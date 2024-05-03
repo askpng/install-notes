@@ -126,3 +126,19 @@ sudo systemctl enable tlp throttled zcfan
 ```
 systemctl reboot
 ```
+
+## Switch system Flatpak to user
+Export list of installed flatpaks
+```
+flatpak list --columns=application --app > bluefin-flatpaks
+```
+Remove system Flathub
+```
+flatpak uninstall --all --delete-data --assumeyes  # prefered flathub remote
+flatpak remote-modify --disable flathub
+flatpak remote-delete --system flathub  # remove filtered flathub remote
+```
+### Reinstall Bluefin Flatpaks
+```
+xargs flatpak install -u < bluefin-flatpaks
+```
