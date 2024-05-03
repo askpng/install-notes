@@ -66,9 +66,9 @@ Add kernel arguments to include everything above, but without lockdown:
 ```
 sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock
 ```
-Also add kernel arguments to enable `SysRq`
+Also add kernel arguments to enable `SysRq` and `zcfan`
 ```
-sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1
+sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1 --append=thinkpad_acpi.fan_control=1
 ```
 Changes will be applied after reboot.
 ## Add repos for python-validity and throttled
