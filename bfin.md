@@ -142,3 +142,40 @@ flatpak remote-delete --system flathub  # remove filtered flathub remote
 ```
 xargs flatpak install -u < bluefin-flatpaks
 ```
+Bluefin flatpaks + essential flatpaks:
+```
+flatpak install -u -y com.discordapp.Discord /
+com.github.d4nj1.tlpui /
+com.github.tchx84.Flatseal /
+com.mattjakeman.ExtensionManager /
+com.quexten.Goldwarden /
+de.haeckerfelix.Fragments /
+io.github.flattool.Warehouse /
+io.github.nokse22.minitext /
+io.github.seadve.Kooha /
+net.waterfox.waterfox /
+org.chromium.Chromium /
+org.flozz.yoga-image-optimizer /
+org.gnome.Epiphany /
+org.gnome.Evolution /
+org.gnome.Snapshot /
+org.gnome.gitlab.somas.Apostrophe /
+org.mozilla.firefox /
+page.codeberg.libre_menu_editor.LibreMenuEditor /
+re.sonny.Junction /
+io.github.dvlv.boxbuddyrs /
+io.github.celluloid_player.Celluloid /
+org.gnome.baobab /
+org.gnome.Calculator /
+org.gnome.Calendar /
+org.gnome.Character /
+org.gnome.Clocks /
+org.gnome.Evince /
+org.gnome.Logs /
+org.gnome.Loupe /
+org.gnome.Maps /
+org.gnome.NautilusPreviewer /
+org.gnome.Weather /
+org.gnome.TextEditor /
+io.missioncenter.MissionCenter /
+```
