@@ -27,11 +27,11 @@ BTRFS volume
 	home
 ```
 
-Proceed to install
+4. Proceed to install & reboot
 
 ## Secure Boot (optional)
 
-On first boot, select `Enroll MOK`. Input password `ublue-os`
+`Enroll MOK` > `ublue-os`
 
 ## Remove duplicate Grub entries
 ```
@@ -42,10 +42,9 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 ```
 rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/bluefin:latest --reboot
 ```
-
 ## To-do list (manual)
-- Replace fonts with Inter 12 and monospace to 12 (if on `40`, via `dconf-editor`)
-- Test suspend on AC power
+1. Replace fonts with Inter 12 and monospace to 12 (if on `40`, via `dconf-editor`)
+2. Test suspend on AC power
 If problematic, verify wakeups:
 ```
 cat /proc/acpi/wakeup | grep enabled
@@ -57,50 +56,35 @@ sudo su %% echo XHC > /proc/acpi/wakeup
 Test suspend again, then log out, log in, and test suspend again
 
 ## Disable kernel lockdown if on Secure Boot (optional)
-
-Check lsm:
+1. Check `lsm`:
 ```
 cat /sys/kernel/security/lsm
 ```
-Add kernel arguments to include everything above, but without lockdown:
+2. Exclude lockdown from `lsm`:
 ```
-sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock
+lsm=capability,yama,selinux,bpf,landlock
 ```
-Also add kernel arguments to enable `SysRq` and `zcfan`
+3. Add kernel arguments to enable `SysRq` and `zcfan`. Changes will be applied on next boot:
 ```
 sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1 --append=thinkpad_acpi.fan_control=1
 ```
-Changes will be applied after reboot.
-## Add repos for python-validity and throttled
-Add COPRs:
+## Add COPR repos for python-validity and throttled
 ```
 cd /etc/yum.repos.d/
 sudo wget https://copr.fedorainfracloud.org/coprs/sneexy/python-validity/repo/fedora-$(rpm -E %fedora)/sneexy-python-validity-fedora-$(rpm -E %fedora).repo
 sudo wget https://copr.fedorainfracloud.org/coprs/abn/throttled/repo/fedora-$(rpm -E %fedora)/abn-throttled-fedora-$(rpm -E %fedora).repo
 ```
-Remove and install repo files for easier upgrade. For reference, check this and adapt to COPRs:
-```
-rpm-ostree update \
---uninstall $(rpm -q rpmfusion-free-release) \
---uninstall $(rpm -q rpmfusion-nonfree-release) \
---install rpmfusion-free-release \
---install rpmfusion-nonfree-release
-```
-
 ## Install and configure utilities (open-fprintd, throttled, tlp, zcfan)
-Disable `power-profiles-daemon` and `rfkill`:
+1. Disable `power-profiles-daemon` and `rfkill`:
 ```
 sudo systemctl disable --now power-profiles-daemon
 sudo systemctl mask power-profiles-daemon
 sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
 ```
-
-Remove
+2. Remove:
 - thermald
 - fprintd
 - fprintd-pam
-
-
 and install
 - open-fprintd packages
 - throttled
@@ -108,25 +92,15 @@ and install
 - tlp-rdw
 - zcfan
 ```
-rpm-ostree override remove thermald fprintd fprintd-pam --install open-fprintd --install fprintd-clients --install fprintd-clients-pam --install python3-validity --install throttled --install tlp tlp-rdw --install zcfan
+rpm-ostree override remove thermald fprintd fprintd-pam --install open-fprintd --install fprintd-clients --install fprintd-clients-pam --install python3-validity --install throttled --install tlp --install tlp-rdw --install zcfan
 ```
-
-### Copy config files
-
-Clone and copy files in `/etc`
-
+### Copy config files and reboot
+1. Clone and copy files into `/etc`.
+2. `systemct reboot`
 ### Enable services
-
 ```
 sudo systemctl enable tlp throttled zcfan
 ```
-
-## Reboot to apply changes
-
-```
-systemctl reboot
-```
-
 ## Switch system Flatpak to user
 Export list of installed flatpaks
 ```
@@ -138,44 +112,11 @@ flatpak uninstall --all --delete-data --assumeyes  # prefered flathub remote
 flatpak remote-modify --disable flathub
 flatpak remote-delete --system flathub  # remove filtered flathub remote
 ```
-### Reinstall Bluefin Flatpaks
+### Reinstall Flatpaks
+Only reinstall stock Flatpaks:
 ```
 xargs flatpak install -u < bluefin-flatpaks
 ```
-Bluefin flatpaks + essential flatpaks:
+Stripped-down Bluefin Flatpaks + essential Flatpaks:
 ```
-flatpak install -u -y com.discordapp.Discord /
-com.github.d4nj1.tlpui /
-com.github.tchx84.Flatseal /
-com.mattjakeman.ExtensionManager /
-com.quexten.Goldwarden /
-de.haeckerfelix.Fragments /
-io.github.flattool.Warehouse /
-io.github.nokse22.minitext /
-io.github.seadve.Kooha /
-net.waterfox.waterfox /
-org.chromium.Chromium /
-org.flozz.yoga-image-optimizer /
-org.gnome.Epiphany /
-org.gnome.Evolution /
-org.gnome.Snapshot /
-org.gnome.gitlab.somas.Apostrophe /
-org.mozilla.firefox /
-page.codeberg.libre_menu_editor.LibreMenuEditor /
-re.sonny.Junction /
-io.github.dvlv.boxbuddyrs /
-io.github.celluloid_player.Celluloid /
-org.gnome.baobab /
-org.gnome.Calculator /
-org.gnome.Calendar /
-org.gnome.Character /
-org.gnome.Clocks /
-org.gnome.Evince /
-org.gnome.Logs /
-org.gnome.Loupe /
-org.gnome.Maps /
-org.gnome.NautilusPreviewer /
-org.gnome.Weather /
-org.gnome.TextEditor /
-io.missioncenter.MissionCenter /
-```
+xargs flatpak install -u -y < essential-flatpaks
