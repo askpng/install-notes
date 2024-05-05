@@ -7,7 +7,7 @@ flatpak remote-add -u --if-not-exists flathub https://dl.flathub.org/repo/flathu
 ## Essential packages
 Install the following flatpak packages:
 ```
-flatpak install -u -y com.discordapp.Discord com.github.d4nj1.tlpui com.github.tchx84.Flatseal com.mattjakeman.ExtensionManager com.quexten.Goldwarden de.haeckerfelix.Fragments io.github.flattool.Warehouse io.github.nokse22.minitext io.github.seadve.Kooha net.waterfox.waterfox org.chromium.Chromium org.flozz.yoga-image-optimizer org.gnome.Epiphany org.gnome.Evolution org.gnome.Snapshot org.gnome.gitlab.somas.Apostrophe org.mozilla.firefox page.codeberg.libre_menu_editor.LibreMenuEditor re.sonny.Junction com.slack.Slack
+flatpak install -u -y com.discordapp.Discord com.github.d4nj1.tlpui com.github.tchx84.Flatseal com.mattjakeman.ExtensionManager com.quexten.Goldwarden de.haeckerfelix.Fragments io.github.flattool.Warehouse io.github.nokse22.minitext io.github.seadve.Kooha net.waterfox.waterfox org.chromium.Chromium org.flozz.yoga-image-optimizer org.gnome.Epiphany org.gnome.Evolution org.gnome.Snapshot org.gnome.gitlab.somas.Apostrophe org.mozilla.firefox page.codeberg.libre_menu_editor.LibreMenuEditor re.sonny.Junction com.slack.Slack org.flameshot.Flameshot
 ```
 Runtimes (if not immediately installed):
 ```
@@ -27,7 +27,7 @@ From [quexten/goldwarden/wiki/Getting-Started](https://github.com/quexten/goldwa
 #### Set API URL
 ```
 flatpak run --command=/app/bin/goldwarden com.quexten.Goldwarden config set-api-url https://my.bitwarden.domain/api
-flatpak run --command=/app/bin/goldwarden com.quexten.Goldwarden  config set-identity-url https://my.bitwarden.domain/identity
+flatpak run --command=/app/bin/goldwarden com.quexten.Goldwarden config set-identity-url https://my.bitwarden.domain/identity
 flatpak run --command=/app/bin/goldwarden com.quexten.Goldwarden config set-notifications-url https://my.bitwarden.domain/notifications
 flatpak run --command=/app/bin/goldwarden com.quexten.Goldwarden vault login --email myemail@here.io
 ```
