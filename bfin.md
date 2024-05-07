@@ -26,6 +26,7 @@ BTRFS volume
 	/var/home
 	home
 ```
+3a. Add `/var/home/.snapshots` if planning to use `butter`
 
 4. Proceed to install & reboot
 
@@ -88,6 +89,7 @@ sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
 - fprintd
 - fprintd-pam
 and install
+- butter
 - open-fprintd packages
 - throttled
 - tlp
