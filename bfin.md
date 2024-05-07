@@ -56,6 +56,7 @@ sudo su %% echo XHC > /proc/acpi/wakeup
 Test suspend again, then log out, log in, and test suspend again
 
 ## Disable kernel lockdown if on Secure Boot (optional)
+> As of right now this is not working. To use `throttled`, disable Secure Boot.
 1. Check `lsm`:
 ```
 cat /sys/kernel/security/lsm
