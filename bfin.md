@@ -68,11 +68,12 @@ lsm=capability,yama,selinux,bpf,landlock
 ```
 sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1 --append=thinkpad_acpi.fan_control=1
 ```
-## Add COPR repos for python-validity and throttled
+## Add COPR repos for python-validity, throttled, and butter
 ```
 cd /etc/yum.repos.d/
 sudo wget https://copr.fedorainfracloud.org/coprs/sneexy/python-validity/repo/fedora-$(rpm -E %fedora)/sneexy-python-validity-fedora-$(rpm -E %fedora).repo
 sudo wget https://copr.fedorainfracloud.org/coprs/abn/throttled/repo/fedora-$(rpm -E %fedora)/abn-throttled-fedora-$(rpm -E %fedora).repo
+sudo wget https://copr.fedorainfracloud.org/coprs/zhangyuannie/butter/repo/fedora-$(rpm -E %fedora)/zhangyuannie-butter-fedora-$(rpm -E %fedora).repo
 ```
 ## Install and configure utilities (open-fprintd, throttled, tlp, zcfan)
 1. Disable `power-profiles-daemon` and `rfkill`:
@@ -92,7 +93,7 @@ and install
 - tlp-rdw
 - zcfan
 ```
-rpm-ostree override remove thermald fprintd fprintd-pam --install open-fprintd --install fprintd-clients --install fprintd-clients-pam --install python3-validity --install throttled --install tlp --install tlp-rdw --install zcfan
+rpm-ostree override remove thermald fprintd fprintd-pam --install open-fprintd --install fprintd-clients --install fprintd-clients-pam --install python3-validity --install throttled --install tlp --install tlp-rdw --install zcfan --install butter
 ```
 ### Copy config files and reboot
 1. Clone and copy files into `/etc`.
