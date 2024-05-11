@@ -46,3 +46,14 @@ Run on VPN for stable speeds
 ```
 flatpak install -u -y com.spotify.Client
 ```
+### Flameshot Flatpak
+
+#### Give screenshot permissions to Flatpak
+```
+flatpak permission-set screenshot screenshot org.flameshot.Flameshot
+```
+#### Bind Gnome Shortcut 
+Super+Shift+S
+```
+flatpak run --command=flameshot -u org.flameshot.Flameshot gui
+```
