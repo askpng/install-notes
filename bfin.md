@@ -57,18 +57,18 @@ sudo su %% echo XHC > /proc/acpi/wakeup
 Test suspend again, then log out, log in, and test suspend again
 
 ## Disable kernel lockdown if on Secure Boot (optional)
-> As of right now this is not working. To use `throttled`, disable Secure Boot.
 1. Check `lsm`:
 ```
 cat /sys/kernel/security/lsm
 ```
-2. Exclude lockdown from `lsm`:
+1a. Exclude lockdown from `lsm`:
+> As of right now this is not working. To use `throttled`, disable Secure Boot.
 ```
 lsm=capability,yama,selinux,bpf,landlock
 ```
-3. Add kernel arguments to enable `SysRq` and `zcfan`. Changes will be applied on next boot:
+2. Add kernel arguments to enable `SysRq`, `zcfan`, GuC loading, and FBC. Changes will be applied on next boot:
 ```
-sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1 --append=thinkpad_acpi.fan_control=1
+sudo rpm-ostree kargs --append=lsm=capability,yama,selinux,bpf,landlock --append=sysrq_always_enabled=1 --append=thinkpad_acpi.fan_control=1 --append=i915.enable_guc=2 --append=i915.enable_fbc=1
 ```
 ## Add COPR repos for python-validity, throttled, and butter
 ```
