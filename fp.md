@@ -50,7 +50,7 @@ flatpak install -u -y com.spotify.Client
 
 #### Give screenshot permissions to Flatpak
 ```
-flatpak permission-set screenshot screenshot org.flameshot.Flameshot
+flatpak permission-set screenshot screenshot org.flameshot.Flameshot yes
 ```
 #### Bind Gnome Shortcut 
 Super+Shift+S
