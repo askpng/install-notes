@@ -54,6 +54,10 @@ Disable XHC wakeup:
 ```
 sudo su %% echo XHC > /proc/acpi/wakeup
 ```
+or
+```
+sudo sh -c "echo 'XHC' >> /proc/acpi/wakeup"
+```
 Test suspend again, then log out, log in, and test suspend again
 
 ## Disable kernel lockdown if on Secure Boot (optional)
