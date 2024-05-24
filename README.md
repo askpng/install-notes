@@ -4,6 +4,7 @@ This repo contains installation notes and ready-to-use configuration files. Will
 
 - [F40](https://github.com/askpng/install-notes/blob/main/F40.md)
 - [Bluefin](https://github.com/askpng/install-notes/blob/main/bfin.md) - for GTS, then rebase to `latest`
+- [Personal OCI]... soon!
 - EndeavourOS
 - [Flatpaks](https://github.com/askpng/install-notes/blob/main/fp.md)
 
