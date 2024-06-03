@@ -17,6 +17,14 @@ org.freedesktop.Platform.openh264
 org.gtk.Gtk3theme.adw-gtk3
 org.gtk.Gtk3theme.adw-gtk3-dark
 ```
+### Enable wayland on Electron apps
+Set the following environment variable:
+```
+ELECTRON_OZONE_PLATFORM_HINT=auto
+```
+This replaces `--ozone-platform-hint=auto`.
+
+`--enable-features=VaapiVideoDecodeLinuxGL,...` still have to be passed using command line or by editing the `.desktop` file execution command. 
 ### Junction
 Enable Junction as default browser
 ```
