@@ -6,8 +6,12 @@ sudo echo "FREETYPE_PROPERTIES=\"cff:no-stem-darkening=0 autofitter:no-stem-dark
 ```
 ## Flags for electron-based apps
 ```
---ozone-platform=wayland
---enable-features=VaapiVideoDecodeLinuxGL,WebRTCPipeWireCapturer,smooth-scrolling,gpu-rasterization,zero-copy
+--ozone-platform-hint=auto
+--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiVideoEncoder,WebRTCPipeWireCapturer,TouchpadOverscrollHistoryNavigation,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs
+--enable-gpu-rasterization
+--ignore-gpu-blocklist
+--enable-zero-copy
+--disable-gpu-memory-buffer-video-frames
 ```
 ## Set Electron apps to use wayland
 ```
